@@ -3,6 +3,10 @@ import random
 
 #load_penguins() give me a pandas.DataFrame with all the data
 
+#Se necesita unicamente el largo del pico y el largo de la aleta
+#con estos dos datos se hara una prediccion de la especie
+#para cada pareja de datos, hacer una prediccion de salida
+
 class DataFetcher:
     def __init__(self):
         self.__FetchData()
