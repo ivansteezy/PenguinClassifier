@@ -24,8 +24,9 @@ class DataFetcher:
         self.__sampleRatio = sampleRatio
 
     def __FetchData(self):
-        penguins = load_penguins().dropna().values
-        self.__penguinsList = penguins.tolist()
+        penguins = load_penguins().dropna()[['species', 'bill_length_mm','flipper_length_mm']]
+        # self.__penguinsList = penguins.tolist()
+        self.__penguinsList = penguins
 
     def __CalculateDataSampleSize(self):
         listSize = len(self.__penguinsList)
