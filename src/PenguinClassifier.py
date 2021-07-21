@@ -37,8 +37,10 @@ class PenginClassifier:
         self.__ScaleData()
         
     def __ScaleData(self):
-        scaler = StandardScaler()
-        self.__rawData[['bill_length_mm','flipper_length_mm']] = scaler.fit_transform(self.__rawData[['bill_length_mm','flipper_length_mm']])
+        self.__scaler = StandardScaler()
+        print(type(self.__rawData[['bill_length_mm','flipper_length_mm']]))
+        self.__rawData[['bill_length_mm','flipper_length_mm']] = self.__scaler.fit_transform(self.__rawData[['bill_length_mm','flipper_length_mm']])
+
 
     def __SetExpectedResults(self):
         self.__xValues = self.__rawData[['bill_length_mm', 'flipper_length_mm']].values
@@ -91,3 +93,4 @@ class PenginClassifier:
     __solver = ''
 
     __classifier = None
+    __scaler = None

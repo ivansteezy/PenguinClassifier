@@ -1,36 +1,32 @@
 import numpy
+from scipy.sparse import data
 from PenguinClassifier import PenginClassifier
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
 
 def main():
     pc = PenginClassifier((150, 100, 50), 100, 'relu', 'adam', 0.6)
     pc.TrainNeuralNetwork()
 
     trainerData = pc.GetTrainerData()
-    print("Los datos con los que se entrenara")
-    print(trainerData)
-
     pc.PredictData()
-    predictedData = pc.GetPredictionResults()
-    print("Los datos predecidos son") # put all in a tuple array
-    print(predictedData)
 
-    trainerTuples = trainerData[0].tolist()
+    ##################################
+    ala, pico = trainerData[0].T #unscale this
     trainerSpecies = trainerData[1].tolist()
-    print(trainerTuples)
-    print(trainerSpecies)
 
-    trainerDf = pd.DataFrame(list(zip(trainerTuples, trainerSpecies)), columns=['Data', 'Specie'])
+    trainerDf = pd.DataFrame(list(zip(ala, pico, trainerSpecies)), columns=['ala', 'pico', 'Specie'])
     print("Tabla de entrenmiento")
     print(trainerDf)
 
     expectedTrainer = pc.GetExpectedData()[0].tolist()
-    expectedSpecies = pc.GetExpectedData()[1].tolist()
+    alaRes,PicoRes = pc.GetExpectedData()[1].T #unscale this
     speciesResult = pc.GetPredictionResults().tolist()
-    trainerRes = pd.DataFrame(list(zip(expectedTrainer, expectedSpecies, speciesResult)), columns=['Datos', 'especie', 'resultado'])
+    trainerRes = pd.DataFrame(list(zip(alaRes, PicoRes, expectedTrainer, speciesResult)), columns=['Ala', 'Pico', 'ResEsp', 'Res'])
     print("Tabla de resultados")
     print(trainerRes)
-
+    ######################################
+    
     accuracy = pc.GetAccuracyPercentage()
     print("El accuracy fue de: {:.4f}".format(accuracy))
 
