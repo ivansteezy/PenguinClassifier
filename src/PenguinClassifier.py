@@ -29,7 +29,7 @@ class PenginClassifier:
 
     def PredictData(self):
         self.__predictionResults = self.__classifier.predict(self.__xValues)
-        # print(self.__scaler.inverse_transform(self.__xValues)) this transform back
+        self.__xValues = self.__scaler.inverse_transform(self.__xValues)
         confusionMatrix = confusion_matrix(self.__predictionResults, self.__yValues)
         self.__CalculateAccuracyPercentage(confusionMatrix)
 
@@ -67,6 +67,7 @@ class PenginClassifier:
         return self.__accuracyPercentage
 
     def GetTrainerData(self):
+        self.__xTrainer = self.__scaler.inverse_transform(self.__xTrainer)
         return (self.__xTrainer, self.__yTrainer)
 
     def GetExpectedData(self):
