@@ -68,7 +68,7 @@ class PenginClassifier:
         return (self.__xTrainer, self.__yTrainer)
 
     def GetExpectedData(self):
-        return self.__xValues.concat(self.__yValues)
+        return (self.__yValues, self.__xValues)
 
     def GetRawData(self):
         return self.__rawData
