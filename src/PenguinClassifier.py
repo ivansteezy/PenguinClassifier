@@ -29,6 +29,7 @@ class PenginClassifier:
 
     def PredictData(self):
         self.__predictionResults = self.__classifier.predict(self.__xValues)
+        # print(self.__scaler.inverse_transform(self.__xValues)) this transform back
         confusionMatrix = confusion_matrix(self.__predictionResults, self.__yValues)
         self.__CalculateAccuracyPercentage(confusionMatrix)
 
@@ -38,8 +39,7 @@ class PenginClassifier:
         
     def __ScaleData(self):
         self.__scaler = StandardScaler()
-        print(type(self.__rawData[['bill_length_mm','flipper_length_mm']]))
-        self.__rawData[['bill_length_mm','flipper_length_mm']] = self.__scaler.fit_transform(self.__rawData[['bill_length_mm','flipper_length_mm']])
+        self.__rawData[['bill_length_mm','flipper_length_mm']] = self.__scaler.fit_transform(self.__rawData[['bill_length_mm','flipper_length_mm']]) #sino se escala, se nota una gran perdida en los resultados
 
 
     def __SetExpectedResults(self):
