@@ -43,7 +43,7 @@ def main():
     yVal = trainingSet['species'].values
 
     #set up algorithm and function to classify
-    classifier = MLPClassifier(hidden_layer_sizes=(150, 100, 50), max_iter=300, activation='relu', solver='adam', random_state=1)
+    classifier = MLPClassifier(hidden_layer_sizes=(150, 100, 50), max_iter=100, activation='relu', solver='adam', random_state=1)
 
     # train the neural network
     classifier.fit(xTrainer, yTrainer)
