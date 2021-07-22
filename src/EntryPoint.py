@@ -1,65 +1,38 @@
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import confusion_matrix
-from DataFetcher import DataFetcher
+from scipy.sparse import data
+from PenguinClassifier import PenginClassifier
+import pandas as pd
 
-def accuracy(confusion_matrix):
-    diagonalSum = confusion_matrix.trace()
-    sumOfAllElements = confusion_matrix.sum()
-    return diagonalSum / sumOfAllElements
 
+def ExportDataAsCsv(data, path):
+    data.to_csv(path_or_buf=path, index=False)
 
 def main():
-    d = DataFetcher()
-    d.SetSampleRatio(60)
+    pc = PenginClassifier((150, 100, 50), 100, 'relu', 'adam', 0.6)
+    pc.TrainNeuralNetwork()
 
-    print("Los pinguinos cargados son: antes de escalar\n")
-    allData = d.GetPenguinsDataList()    
-    print(allData)
+    trainerData = pc.GetTrainerData()
+    pc.PredictData()
 
-    scaler = StandardScaler()
-    allData[['bill_length_mm','flipper_length_mm']] = scaler.fit_transform(allData[['bill_length_mm','flipper_length_mm']])
-    print("Los pinguinos cargados son: despues de escalar\n")
-    print(allData)
+    ##################################
+    ala, pico = trainerData[0].T #unscale this
+    trainerSpecies = trainerData[1].tolist()
 
-    #Splitting the dataset into training and validation sets
-    trainingSet, validationSet = train_test_split(allData, test_size=0.6, random_state=21)
-    print("\n\n\n")
-    print("El dataset de entrenamiento")
-    print(trainingSet)
+    trainerDf = pd.DataFrame(list(zip(ala, pico, trainerSpecies)), columns=['ala', 'pico', 'Specie'])
+    print("Tabla de entrenmiento")
+    print(trainerDf)
+    ExportDataAsCsv(trainerDf, "output-data/training-data.csv")
 
-    xTrainer = trainingSet[['bill_length_mm', 'flipper_length_mm']].values
-    yTrainer = trainingSet['species'].values
-
-    #maybe change names by an id, or switch name to ytrainer
-    print("Trainers X")
-    print(xTrainer)
-
-    print("Trainer Y")
-    print(yTrainer)
-
-    xVal = trainingSet[['bill_length_mm', 'flipper_length_mm']].values
-    yVal = trainingSet['species'].values
-
-    #set up algorithm and function to classify
-    classifier = MLPClassifier(hidden_layer_sizes=(150, 100, 50), max_iter=100, activation='relu', solver='adam', random_state=1)
-
-    # train the neural network
-    classifier.fit(xTrainer, yTrainer)
-
-    #predict y for x val
-    yPred = classifier.predict(xVal)
-
-    print("Resultados predecidos")
-    print(yPred)
-
-    print("Resultados")
-    print(yVal)
-
-    #Print results
-    cm = confusion_matrix(yPred, yVal)
-    print("EL Accuracy fue de: ", accuracy(cm))
+    expectedTrainer = pc.GetExpectedData()[0].tolist()
+    alaRes,PicoRes = pc.GetExpectedData()[1].T #unscale this
+    speciesResult = pc.GetPredictionResults().tolist()
+    trainerRes = pd.DataFrame(list(zip(alaRes, PicoRes, expectedTrainer, speciesResult)), columns=['Ala', 'Pico', 'ResEsp', 'Res'])
+    print("Tabla de resultados")
+    print(trainerRes)
+    ExportDataAsCsv(trainerRes, "output-data/predicted-data.csv")
+    ######################################
+    
+    accuracy = pc.GetAccuracyPercentage()
+    print("El accuracy fue de: {:.4f}".format(accuracy))
 
 if __name__ == "__main__":
     main()
