@@ -14,7 +14,7 @@ def main():
     ala, pico = trainerData[0].T
     trainerSpecies = trainerData[1].tolist()
 
-    trainerDf = pd.DataFrame(list(zip(ala, pico, trainerSpecies)), columns=['Longitud del pico (mm)', 'Longitud de la aleta(mm)', 'Especie'])
+    trainerDf = pd.DataFrame(list(zip(ala, pico, trainerSpecies)), columns=['Longitud del pico (mm)', 'Longitud de la aleta (mm)', 'Especie'])
     print("Datos de entrenmiento")
     print(trainerDf)
     ExportDataAsCsv(trainerDf, "output-data/training-data.csv")
