@@ -45,3 +45,52 @@ A grandes rasgos se cuentan con 5 parametros:
 
 - Y por ultimo el porcentaje con el cual se quieren tomar los datos, en este caso el 70% (representando en un rango 0.0 a 1.0, siendo por ejemplo 0.3 el 70%, 0.2 el 80%, etc).
 
+### ※ Preparacion de datos
+Primero, necesitamos hacer la importacion de los datos con los cuales se trabajara.
+
+```py
+from palmerpenguins import load_penguins
+
+class PenguinClassifier:
+    #...
+    # obtenemos y sanitizamos los datos
+    def __FetchData(self):
+    self.__rawData = load_penguins().dropna()[['species', 'bill_length_mm','flipper_length_mm']]
+    self.__ScaleData()
+
+    # escalamos los datos a un nuevo rango
+    def __ScaleData(self):
+        self.__scaler = StandardScaler()
+        self.__rawData[['bill_length_mm','flipper_length_mm']] = self.__scaler.fit_transform(self.__rawData[['bill_length_mm','flipper_length_mm']])
+```
+
+Cargamos los datos con la funcion ```load_penguins()``` y eliminamos los valores no existentes con ```dropna()```, para esta tarea utilizaremos unicamente las caracteristicas ```species```, ```bill_length_mm``` y ```flipper_length_mm```, para justo despues escalar los datos a un rango estandarizado para aumentar la precision.
+
+En este punto los datos se ven algo asi: 
+<center>
+<img src="img/scaled-data.png" height=200>
+</center>
+
+### ※Entrenamiento de la red neuronal
+
+```py
+from sklearn.neural_network import MLPClassifier
+from sklearn.model_selection import train_test_split
+
+class PenguinClassifier:
+    #...
+
+    # Se entrena la red neuronal tomando una porcion de los datos al azar
+    # y se dividen en dos colecciones, una que contiene 'bill_length_mm' y 'flipper_length_mm'
+    # y otra que contiene 'species'
+    def TrainNeuralNetwork(self):
+        trainingSet = train_test_split(self.__rawData, test_size=self.__trainingDataSetSize, random_state=20)
+        self.__yTrainer = trainingSet[0]['species'].values
+        self.__xTrainer = trainingSet[0][['bill_length_mm', 'flipper_length_mm']].values
+        self.__SetExpectedResults()
+        self.__classifier = MLPClassifier(hidden_layer_sizes=self.__hiddenLayers,
+                                            max_iter=self.__maxIterations,
+                                            activation=self.__activationFun, 
+                                            solver=self.__solver, random_state=21)
+        self.__classifier.fit(self.__xTrainer, self.__yTrainer)
+```

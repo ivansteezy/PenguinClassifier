@@ -41,7 +41,6 @@ class PenginClassifier:
         self.__scaler = StandardScaler()
         self.__rawData[['bill_length_mm','flipper_length_mm']] = self.__scaler.fit_transform(self.__rawData[['bill_length_mm','flipper_length_mm']]) #sino se escala, se nota una gran perdida en los resultados
 
-
     def __SetExpectedResults(self):
         self.__xValues = self.__rawData[['bill_length_mm', 'flipper_length_mm']].values
         self.__yValues = self.__rawData['species'].values
