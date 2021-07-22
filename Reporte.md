@@ -13,17 +13,35 @@ La clase ```MLPClassifier``` implementa un perceptrón multicapa, el cual se ent
 Se puede crear una instacia _via_ constructor de ```PenguinClassifier``` es tal que:
 
 ```py
-PenginClassifier((50, 50, 50), 100, 'relu', 'adam', 0.3)
+PenginClassifier((50, 50, 50), 100, 'relu', 'lbfgs', 0.3)
 ```
 
 A grandes rasgos se cuentan con 5 parametros:
 
-- Primero se define el numero de _capas ocultas_ con las que contara la red neuronal, en este caso 3 capas de 50 nodos cada una.
+- Primero se define el numero de [_capas ocultas_]() con las que contara la red neuronal, en este caso 3 capas de 50 nodos cada una.
+
+<center>
+<img src="https://png.pngitem.com/pimgs/s/417-4176751_english-neural-feed-forward-network-for-machine-translation.png" height=150 style="display: block; margin: auto;">
+<em>Capas ocultas en una red neuronal</em>
+</center>
+<br>
 
 - El segundo parametro es el numero de iteraciones (o [epochs](https://radiopaedia.org/articles/epoch-machine-learning)) que se desea que ejecute. Una iteracion corresponde al ciclo compuesto por la "alimentacion hacia adelante" (feed-forward) y la propagacion hacia atras(backpropagation).
 
-- El tercero es la funcion de activacion
+- El tercero es la funcion de activacion para las capas ocultas, hay 4 opciones:
+    - 'identity', retorna ```f(x) = x```
+    - 'logistic', retorna ```f(x) = 1 / (1 + exp(-x))```
+    - 'tanh', retorna ```f(x) = tanh(x)```
+    - 'relu', retorna ```f(x) = max(0, x)```
 
-- El cuarto es el algoritmo de optimizacion
+    para esta tarea se utilizo _relu_ (es muy facil de procesar, es la opcion por defecto tambien)
 
-- Y por ultimo el porcentaje con el cual se quieren tomar los 
+- El cuarto es el algoritmo de optimizacion, sklearn da 3 opciones:
+    - 'lbfgs' es un optimizador de la familia de los metodos quasi-Newton
+    - 'sgd' es un deceso gradiente estocástico
+    - 'adam' es una extension del anterior
+
+    Por defecto, sklearn utiliza la opcion de _adam_, sin embargo, en la documencion oficial hace un parentesis destacando que adam funciona bien en cojuntos de datos relativamente grandes (miles de datos de entramiento o mas, por ejemplo) y que para pequeños conjuntos de datos 'lbfgs' se desempeña mejor, por lo que fue el que se uso en esta tarea.
+
+- Y por ultimo el porcentaje con el cual se quieren tomar los datos, en este caso el 70% (representando en un rango 0.0 a 1.0, siendo por ejemplo 0.3 el 70%, 0.2 el 80%, etc).
+
