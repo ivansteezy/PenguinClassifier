@@ -23,3 +23,13 @@ El constructor de ```PenguinClassifier``` es tal que:
         self.__FetchData()
 ```
 
+
+Se crea una instancia tal que: 
+
+```py
+PenginClassifier((50, 50, 50), 100, 'relu', 'adam', 0.3)
+```
+
+Primero se define el numero de _capas ocultas_ con las que contara la red neuronal, en este caso 3 capas de 50 nodos cada una.
+
+El segundo parametro es el numero de iteraciones (o [epochs](https://radiopaedia.org/articles/epoch-machine-learning)) que se desea que ejecute. Una iteracion corresponde al ciclo compuesto por la "alimentacion hacia adelante" (feed-forward) y la propagacion hacia atras(backpropagation).

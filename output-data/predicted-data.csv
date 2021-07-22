@@ -66,7 +66,7 @@ Ala,Pico,ResEsp,Res
 33.5,190.0,Adelie,Adelie
 39.7,190.0,Adelie,Adelie
 39.6,196.0,Adelie,Adelie
-45.8,197.0,Adelie,Adelie
+45.8,197.0,Adelie,Chinstrap
 35.5,190.0,Adelie,Adelie
 42.8,195.0,Adelie,Adelie
 40.9,191.0,Adelie,Adelie
@@ -307,7 +307,7 @@ Ala,Pico,ResEsp,Res
 49.0,210.0,Chinstrap,Gentoo
 46.2,187.0,Chinstrap,Chinstrap
 50.9,196.0,Chinstrap,Chinstrap
-45.5,196.0,Chinstrap,Adelie
+45.5,196.0,Chinstrap,Chinstrap
 50.9,196.0,Chinstrap,Chinstrap
 50.8,201.0,Chinstrap,Chinstrap
 50.1,190.0,Chinstrap,Chinstrap
@@ -330,5 +330,5 @@ Ala,Pico,ResEsp,Res
 55.8,207.0,Chinstrap,Chinstrap
 43.5,202.0,Chinstrap,Adelie
 49.6,193.0,Chinstrap,Chinstrap
-50.8,210.0,Chinstrap,Gentoo
+50.8,210.0,Chinstrap,Chinstrap
 50.2,198.0,Chinstrap,Chinstrap

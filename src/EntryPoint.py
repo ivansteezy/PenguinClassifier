@@ -7,7 +7,7 @@ def ExportDataAsCsv(data, path):
     data.to_csv(path_or_buf=path, index=False)
 
 def main():
-    pc = PenginClassifier((150, 100, 50), 100, 'relu', 'adam', 0.3)
+    pc = PenginClassifier((50, 50, 50), 100, 'relu', 'adam', 0.3)
     pc.TrainNeuralNetwork()
 
     trainerData = pc.GetTrainerData()
