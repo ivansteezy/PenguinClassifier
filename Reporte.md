@@ -10,26 +10,20 @@ La clase encargada de realizar la clasificacion se encuentra en el archivo [Peng
 
 La clase ```MLPClassifier``` implementa un perceptrón multicapa, el cual se entrena utilizando el algoritmo de [Propagación hacia atrás (Backpropagation)](https://es.wikipedia.org/wiki/Propagaci%C3%B3n_hacia_atr%C3%A1s).
 
-El constructor de ```PenguinClassifier``` es tal que:
-
-```py
-    def __init__(self, hiddenLayers, maxIterations, activationFunc, solver, trainingDataSetSize):
-        self.__hiddenLayers = hiddenLayers
-        self.__maxIterations = maxIterations
-        self.__activationFun = activationFunc
-        self.__solver = solver
-        self.__trainingDataSetSize = trainingDataSetSize
-
-        self.__FetchData()
-```
-
-
-Se crea una instancia tal que: 
+Se puede crear una instacia _via_ constructor de ```PenguinClassifier``` es tal que:
 
 ```py
 PenginClassifier((50, 50, 50), 100, 'relu', 'adam', 0.3)
 ```
 
-Primero se define el numero de _capas ocultas_ con las que contara la red neuronal, en este caso 3 capas de 50 nodos cada una.
+A grandes rasgos se cuentan con 5 parametros:
 
-El segundo parametro es el numero de iteraciones (o [epochs](https://radiopaedia.org/articles/epoch-machine-learning)) que se desea que ejecute. Una iteracion corresponde al ciclo compuesto por la "alimentacion hacia adelante" (feed-forward) y la propagacion hacia atras(backpropagation).
+- Primero se define el numero de _capas ocultas_ con las que contara la red neuronal, en este caso 3 capas de 50 nodos cada una.
+
+- El segundo parametro es el numero de iteraciones (o [epochs](https://radiopaedia.org/articles/epoch-machine-learning)) que se desea que ejecute. Una iteracion corresponde al ciclo compuesto por la "alimentacion hacia adelante" (feed-forward) y la propagacion hacia atras(backpropagation).
+
+- El tercero es la funcion de activacion
+
+- El cuarto es el algoritmo de optimizacion
+
+- Y por ultimo el porcentaje con el cual se quieren tomar los 
