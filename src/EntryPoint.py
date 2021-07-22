@@ -32,7 +32,7 @@ def main():
     ######################################
     
     accuracy = pc.GetAccuracyPercentage()
-    print("El accuracy fue de: {:.4f}".format(accuracy))
+    print("El accuracy fue de: {:.4f}%".format(accuracy))
 
 if __name__ == "__main__":
     main()
