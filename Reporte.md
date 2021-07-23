@@ -155,3 +155,14 @@ Con los parametros mostrados, el porcentaje de precision fue de un **97.8979%**.
 
 Hice pruebas con distintos parametros y estos fueron los resultados.
 
+|Escalados|Capas|Iteraciones|Func. de act.|Optimizador|Tamanio de datos de entrenamiento|Precision|Tiempo|
+|---|---|---|---|---|---|---|---|
+|Si|(50, 50, 50)|100|relu|lbfgs|70%|97.8979%|1.335 segs.|
+|Si|(50, 50, 50)|100|tanh|lbfgs|70%|97.2973%|3.973 segs.|
+|Si|(50, 50, 50)|100|relu|adam|70%|95.7958%|1.396 segs.|
+|Si|(50, 50, 50)|100|logistic|sgd|70%|43.8438%|1.253 segs.|
+|Si|(50, 50, 50)|100|logistic|sgd|70%|43.8438%|1.253 segs.|
+|Si|(200, 200, 200)|500|logistic|sgd|90%|43.8438%|1.332 segs.|
+|No|(50, 50, 50)|100|relu|lbfgs|70%|72.3724%|1.394 segs.|
+|No|(200, 200, 200)|500|relu|lbfgs|80%|96.0961%|7.913 segs.|
+|Si|(100, 100, 100)|500|relu|lbfgs|80%|98.1981%|3.208 segs.|
