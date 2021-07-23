@@ -27,5 +27,5 @@ Para evaluar la precisión de los resultados se utiliza la [matriz de confusión
 
 Por último se genera un archivo csv que contiene los [datos de entrenamiento](output-data/training-data.csv) y un csv con las [predicciones obtenidas](output-data/predicted-data.csv).
 
-## ※ Mas informacion
+## ※ Mas información
 Si deseas saber más a profundidad respecto a como se entrenó la red neuronal y el como se implementó, existe este [Reporte](Reporte.md) el cual tiene información al respecto.
