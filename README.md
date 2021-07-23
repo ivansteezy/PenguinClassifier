@@ -3,7 +3,7 @@
 ## ※ Descripción (TL;DR)
 Este programa utiliza un modelo de machine learning en el cual se entrena una red neuronal dado un Dataset que contiene información relacionada a 3 especies de Pingüinos (Adelie, Chinstrap y Gentoo) y en base a la información correspondiente a el largo de su pico y el largo de su aleta hará una predicción para definir la especie de un pingüinos.
 
-### ※ Preparacion de datos
+### ※ Preparación de datos
 Para ello se hace uso de la clase de scikit-learn ```MLPClassifier``` definiendo parámetros como el número de capas ocultas, el número de iteraciones (o epochs), la función de activación y el algoritmo de optimización.
 
 Posteriomente importamos los datos con los cuales se trabajarán, (en este caso solo nos interesan tres características; ```species```, ```bill_length_mm``` y ```flipper_length_mm```).
