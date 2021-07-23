@@ -12,7 +12,7 @@ Con estos datos, se procede a hacer un escalado de características ([feature sc
 
 Posterior al escalado se procede a generar un _subconjunto_ de datos con los cuales se entrenará la red neuronal (el 70% de los datos en este caso).
 
-Una vez se tiene el conjunto de datos de entrenamiento, separamos los datos en:
+Una vez se tiene el conjunto de datos de entrenamiento, se separan los datos en:
 - La matriz de entrada ```<X>```, en este caso ```bill_length_mm``` y ```flipper_length_mm```.
 - Los objetivos ```<y>```, en este caso ```species```.
 
