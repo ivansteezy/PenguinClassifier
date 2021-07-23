@@ -94,3 +94,64 @@ class PenguinClassifier:
                                             solver=self.__solver, random_state=21)
         self.__classifier.fit(self.__xTrainer, self.__yTrainer)
 ```
+
+Antes de entrenar a la red neuronal es necesario seleccionar los datos de entrada y los datos objetivo (```yTrainer``` y ```xTrainer``` en el fragmento de codigo) para despues almacenar los datos origininales para hacer una comparacion con la prediccion, esto con ```SetExpectedResults()```
+
+```py
+    def  __SetExpectedResults(self):
+        self.__xValues = self.__rawData[['bill_length_mm', 'flipper_length_mm']].values
+        self.__yValues = self.__rawData['species'].values
+```
+
+Por ultimo solo se entrena la red con ```fit()``` y los datos de entrenamiento.
+
+### ※ Prediccion y precision
+Por ultimo, para hacer la prediccion con la red neuronal basta hacer ```predict()``` con el 100% de los datos (```xValues```)
+
+```py
+    def PredictData(self):
+        self.__predictionResults = self.__classifier.predict(self.__xValues)
+        self.__xValues = self.__scaler.inverse_transform(self.__xValues)
+        confusionMatrix = confusion_matrix(self.__predictionResults, self.__yValues)
+        self.__CalculateAccuracyPercentage(confusionMatrix)
+```
+
+Para calcular el porcentaje de la precision de la prediccion se utiliza la matriz de confusion la cual es dada por ```sklearn.metrics.confusion_matrix()```.
+
+Una matriz de confusion tiene la siguiente forma
+
+<center>
+<img src="https://miro.medium.com/max/2400/1*SAt7oTEaVIsUigtyiJyDJA.png" height=150>
+</center>
+
+Las etiquetas positivo/negativo se refiere al resultado previsto de un experimento, mientras que las etiquetas verdadero/falso se refieren al resultado real.
+
+Por lo que la formula para calcular la precision seria todos las predicciones correctas dividido por todas las predicciones:
+
+<center>
+ a(x) = VP + VN / (VP + VN + FP + FN)
+</center>
+
+- VP: Verdadero positivo
+- VN: Verdadero negativo
+- FP: Falso positivo
+- FN: Falso negativo
+
+Lo que se podria definir como la suma de la diagonal principal de la matriz dividido por la suma de todos los elementos de la matriz:
+
+```py
+def __CalculateAccuracyPercentage(self, confusionMatrix):
+        diagonalSum = confusionMatrix.trace()
+        sumOfAllElements = confusionMatrix.sum()
+        self.__accuracyPercentage = (diagonalSum / sumOfAllElements) * 100
+```
+
+### ※ Resultados
+
+Por ultimo se genera un archivo csv que contiene los [datos de entrenamiento](output-data/training-data.csv) y un csv con las [predicciones obtenidas](output-data/predicted-data.csv) donde se puede ver los errores que tuvo.
+
+
+Con los parametros mostrados, el porcentaje de precision fue de un **97.8979%**.
+
+Hice pruebas con distintos parametros y estos fueron los resultados.
+
