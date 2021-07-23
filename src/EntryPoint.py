@@ -1,6 +1,7 @@
 from PenguinClassifier import PenginClassifier
 import pandas as pd
 
+# Exportar el Dataframe como un archivo csv
 def ExportDataAsCsv(data, path):
     data.to_csv(path_or_buf=path, index=False)
 
