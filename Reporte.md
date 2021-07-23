@@ -13,7 +13,7 @@ La clase ```MLPClassifier``` implementa un perceptrón multicapa, el cual se ent
 Se puede crear una instacia _via_ constructor de ```PenguinClassifier``` es tal que:
 
 ```py
-PenginClassifier((50, 50, 50), 100, 'relu', 'lbfgs', 0.3)
+PenguinClassifier((50, 50, 50), 100, 'relu', 'lbfgs', 0.3)
 ```
 
 A grandes rasgos se cuentan con 5 parámetros:
