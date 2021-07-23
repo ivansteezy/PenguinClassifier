@@ -2,7 +2,7 @@
 
 Este programa utiliza un modelo de _machine learning_ en el cual se entrena una _red neuronal_ dado un _Dataset_ que contiene información relacionada a 3 especies de Pingüinos (Adelie, Chinstrap y Gentoo) asi como sus características como el largo de su pico y el largo de sus aletas.
 
-La libreria utilizada es [scikit-learn](https://scikit-learn.org/stable/install.html), la red neurnal usada pertenece al módulo [sklearn.neural_network](https://scikit-learn.org/stable/modules/neural_networks_supervised.html) y el _dataset_ usado es [palmerpenguins](https://github.com/allisonhorst/palmerpenguins).
+La librería utilizada es [scikit-learn](https://scikit-learn.org/stable/install.html), la red neurnal usada pertenece al módulo [sklearn.neural_network](https://scikit-learn.org/stable/modules/neural_networks_supervised.html) y el _dataset_ usado es [palmerpenguins](https://github.com/allisonhorst/palmerpenguins).
 
 ## ※ Código 
 
@@ -18,7 +18,7 @@ PenginClassifier((50, 50, 50), 100, 'relu', 'lbfgs', 0.3)
 
 A grandes rasgos se cuentan con 5 parámetros:
 
-- Primero se define el numero de _capas ocultas_ con las que contará la red neuronal, en este caso 3 capas de 50 nodos cada una.
+- Primero se define el número de _capas ocultas_ con las que contará la red neuronal, en este caso 3 capas de 50 nodos cada una.
 
 <center>
 <img src="https://png.pngitem.com/pimgs/s/417-4176751_english-neural-feed-forward-network-for-machine-translation.png" height=150 style="display: block; margin: auto;">
@@ -71,7 +71,7 @@ En este punto los datos se ven algo así:
 <img src="img/scaled-data.png" height=200>
 </center>
 
-### ※Entrenamiento de la red neuronal
+### ※ Entrenamiento de la red neuronal
 
 ```py
 from sklearn.neural_network import MLPClassifier
